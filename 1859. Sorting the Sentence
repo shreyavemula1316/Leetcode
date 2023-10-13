@@ -1,0 +1,18 @@
+class Solution {
+    public String sortSentence(String s) {
+        String[] a = s.split(" ");
+        String[] ans = new String[a.length];
+        for(int i=0;i<a.length;i++){
+            int size = a[i].length();
+            String b = a[i].substring(0,size-1);
+            int ind = a[i].charAt(size-1)-'0'-1;
+            ans[ind] = b;
+        }
+        StringBuilder res = new StringBuilder();
+        for(int i=0;i<a.length;i++){
+            res.append(ans[i]);
+            res.append(" ");
+        }
+        return res.toString().trim();
+    }
+}
