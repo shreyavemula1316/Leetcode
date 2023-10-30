@@ -1,0 +1,36 @@
+class Solution {
+    public int myAtoi(String s) {
+        char[] c = s.toCharArray();
+        long num=0;
+        if(c.length==0) return 0;
+        int i=0,sign=1;
+        char curr = c[i];
+        while(curr == ' '){
+            i++;
+            if(i == c.length) return 0;
+            curr = c[i];
+        }
+        if(curr == '+'){
+            sign = 1;
+            i++;
+        }
+        else if(curr == '-'){
+            sign = -1;
+            i++;
+        }
+        for(;i<c.length;i++){
+            curr = c[i];
+            if(curr < '0' || curr > '9')
+            break;
+            else{
+                num *= 10;
+                num += curr-'0';
+
+                if(sign*num <= Integer.MIN_VALUE) return Integer.MIN_VALUE;
+                else if(sign*num >= Integer.MAX_VALUE) return Integer.MAX_VALUE;
+            }
+        }
+        num *= sign;
+        return (int)num;
+    }
+}
